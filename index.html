@@ -1,8 +1,36 @@
 <html>
-	<head>
-		<title>Ejemplo de Configuración de Perfil</title>
+  <head>
+		<title>Ejemplo de ConfiguraciÃ³n de Perfil</title>
 	</head>
 	<body>
 		<h1>Perfil de Miembro</h1>
+		<h2>Prueba Fotos de Perfil, Facebook y Google+</h2>
+		<img src="https://profiles.google.com/s2/photos/profile/115028340379415033417" title="Full">
+		<img src="https://profiles.google.com/s2/photos/profile/115028340379415033417?sz=80" title="80px">
+		<img src="http://graph.facebook.com/vanessagabriela.gs/picture?type=large" title="FUll">
+		<img src="http://graph.facebook.com/vanessagabriela.gs/picture?width=48" title="48px">
+
+<h2>Prueba de Fotos</h2>
+<div id="fotos"></div>
+<script type="text/javascript">
+  function procesar(root) {
+    var feed = root.feed;
+    var entries = feed.entry || [];
+    var html = ['<br />'];
+
+    for (var i = 0; i < entries.length; ++i) {
+      var entry = entries[i];
+      var title = entry.title.$t;
+      var imagen=entry.media$group.media$content;
+      html.push('<img src="'+imagen[0].url+'" width="'+imagen[0].width+'" height="'+imagen[0].height+'" alt="'+title+'" />', '<br />');
+    }
+    document.getElementById("fotos").innerHTML = html.join("");
+  }
+</script>
+<script src="http://picasaweb.google.com/data/feed/base/user/115028340379415033417/albumid/5847853045599140593?
+
+kind=photo&alt=json-in-script&imgmax=640&hl=es_VE&fields=entry(id,title,media:group/media:content)&callback=procesar">
+</script>
+
 	</body>
 </html>
